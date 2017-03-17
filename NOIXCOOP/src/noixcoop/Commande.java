@@ -72,9 +72,9 @@ public class Commande {
     
     public Boolean enCours(){
         Boolean valeur=false;
-       /* if (this.dateEnvoie!=null){
+        if (this.dateEnvoi!=null){
             valeur = true;
-        }*/
+        }
         // Renvoie vrai si la commande n'est pas encore expédiée, faux sinon.   
         // Une commande n’est pas expédiée si sa date d’envoi contient NULL. 
         return valeur;
