@@ -17,16 +17,23 @@ public class Commande {
     private int quantite;
     private Date dateConditionnement;
     private Date dateEnvoi;
+    private Produit leProduit;
 
-    public Commande(int id, String conditionnement, int quantite, Date dateConditionnement, Date dateEnvoi) {
+    public Commande(int id, String conditionnement, int quantite, Date dateConditionnement, Date dateEnvoi, Produit leProduit) {
         this.id = id;
         this.conditionnement = conditionnement;
         this.quantite = quantite;
         this.dateConditionnement = dateConditionnement;
         this.dateEnvoi = dateEnvoi;
+        this.leProduit = leProduit;
     }
     
-    //public Commande(int unId, String unConditionnement, int )
+    /**
+     * @return leProduit 
+     */
+    public Produit getLeProduit() {
+        return leProduit;
+    }
 
     /**
      * @return the id
@@ -65,10 +72,12 @@ public class Commande {
     
     public Boolean enCours(){
         Boolean valeur=false;
-        //if (dateEnvoie==null)
+       /* if (this.dateEnvoie!=null){
+            valeur = true;
+        }*/
         // Renvoie vrai si la commande n'est pas encore expédiée, faux sinon.   
         // Une commande n’est pas expédiée si sa date d’envoi contient NULL. 
-        return false;
+        return valeur;
     }
     
     public String XmlCommande(){
