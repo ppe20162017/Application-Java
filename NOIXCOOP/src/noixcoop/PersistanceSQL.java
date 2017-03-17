@@ -5,6 +5,7 @@
  */
 package noixcoop;
 
+import java.sql.*;
 /**
  *
  * @author benoi
@@ -13,6 +14,7 @@ public class PersistanceSQL {
     
     private String ipBase, nomBaseDonnees;
     private int port;
+    
 
     public PersistanceSQL(String ipBase, String nomBaseDonnees, int port) {
         this.ipBase = ipBase;
