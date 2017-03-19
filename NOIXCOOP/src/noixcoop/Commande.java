@@ -5,6 +5,7 @@
  */
 package noixcoop;
 
+import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -80,11 +81,20 @@ public class Commande {
         return valeur;
     }
     
-    public String XmlCommande(){
+    public Fichier XmlCommande()throws IOException, ClassNotFoundException{
         // Retourne la chaîne correspondant au code XML représentant la commande (voir annexe).  
         // Cette fonction est appelée par la méthode XmlNonLivrees() de la classe   
         // GestionCommandes décrite ci-après.
-        return "";
+        Fichier unFichier=new Fichier();
+        unFichier.ecrire("<commande id=\""+this.getId()+"\"> ");
+        unFichier.ecrire("<produit variete=\""+this.getLeProduit().getVariete()+"\" type=\""+this.getLeProduit().getType()+"\" calibre=\""+this.getLeProduit().getCalibre()+"\" /> ");
+        unFichier.ecrire("<conditionnement type=\""+this.getConditionnement()+"\" /> ");
+        unFichier.ecrire("<quantite>"+this.getQuantite()+"</quantite>");
+        unFichier.ecrire("<date_conditionnement>"+this.getDateConditionnement()+"</date_conditionnement>");
+        unFichier.ecrire("<date_envoi>"+this.getDateEnvoi()+"</date_envoi>");
+        unFichier.ecrire("</commande>");
+        
+        return unFichier;
     }
     
 }
