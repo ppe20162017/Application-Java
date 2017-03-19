@@ -5,19 +5,28 @@
  */
 package noixcoop;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author benoi
  */
 public class GestionCommandes {
     private PersistanceSQL données;
+    private ArrayList<Distributeur> lesDistributeur;
 
     public GestionCommandes(PersistanceSQL données) {
         this.données = données;
     }
     
     public Distributeur getDistributeur (String idDistributeur){
-        
+        Distributeur leDistributeur = new Distributeur();
+        for (Distributeur unDistributeur : lesDistributeur){
+            if (unDistributeur.getId()==idDistributeur){
+                leDistributeur = unDistributeur;
+            }
+        }
+        return leDistributeur; 
     }
     
     public String XmlNonLivrees (Distributeur unDistributeur){

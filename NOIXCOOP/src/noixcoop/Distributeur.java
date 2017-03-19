@@ -13,16 +13,20 @@ import java.util.HashMap;
  * @author benoi
  */
 public class Distributeur {
-    private int id;
+    private String id;
     private String nom;
     private ArrayList<Commande> lesCommandes;
 
-    public Distributeur(int id, String nom) {
+    public Distributeur(){
+        
+    }
+    
+    public Distributeur(String id, String nom) {
         this.id = id;
         this.nom = nom;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
