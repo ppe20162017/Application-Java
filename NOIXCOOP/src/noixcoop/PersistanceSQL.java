@@ -27,17 +27,21 @@ public class PersistanceSQL {
         this.port = port;
     }
     
-    public void rangerDansBase(){
+    public void rangerDansBase(Object unObjet){
         Connection c=null;
         Statement s=null;
+        Commande co=new Commande();
         try{
             Class.forName("org.gjt.mm.mysql.Driver");
             //Class.forName("com.mysql.jdbc.Driver");
             
-            c=DriverManager.getConnection("jdbc:mysql://localhost/agrurppe","root","");
+            c=DriverManager.getConnection(this.ipBase,this.login,this.mdp);
             s = c.createStatement();
-            String sql = "INSERT INTO `commande`(`dateCommande`, `numLots`, `idClient`) VALUES ('2017-02-03',8,1);";
-            s.executeUpdate(sql); 
+            if ( co.equals(unObjet) ){
+                String sql = "INSERT INTO `commande`(`"+co.getDateEnvoi()+"`, `numLots`, `idClient`) VALUES ('2017-02-03',8,1);";
+            }
+            //String sql = "INSERT INTO `commande`(`dateCommande`, `numLots`, `idClient`) VALUES ('2017-02-03',8,1);";
+            //s.executeUpdate(sql); 
             System.out.println("connexion OK");
         }
         catch(SQLException e){

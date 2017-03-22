@@ -19,6 +19,10 @@ public class Commande {
     private Date dateConditionnement;
     private Date dateEnvoi;
     private Produit leProduit;
+    
+    public Commande (){
+        
+    }
 
     public Commande(int id, String conditionnement, int quantite, Date dateConditionnement, Date dateEnvoi, Produit leProduit) {
         this.id = id;

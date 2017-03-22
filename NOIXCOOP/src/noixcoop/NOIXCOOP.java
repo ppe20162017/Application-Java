@@ -16,8 +16,10 @@ public class NOIXCOOP {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        PersistanceSQL p = new PersistanceSQL();
-        p.rangerDansBase();
+        PersistanceSQL p = new PersistanceSQL("jdbc:mysql://localhost/agrurppe","agrurppe",80);
+        Commande c=new Commande();
+     
+        p.rangerDansBase(c);
     }
     
 }
