@@ -30,16 +30,22 @@ public class PersistanceSQL {
     public void rangerDansBase(Object unObjet){
         Connection c=null;
         Statement s=null;
-        Commande co=new Commande();
+        
+        
+        
+        
+        
         try{
             Class.forName("org.gjt.mm.mysql.Driver");
-            //Class.forName("com.mysql.jdbc.Driver");
             
             c=DriverManager.getConnection(this.ipBase,this.login,this.mdp);
             s = c.createStatement();
-            if ( co.equals(unObjet) ){
-                String sql = "INSERT INTO `commande`(`"+co.getDateEnvoi()+"`, `numLots`, `idClient`) VALUES ('2017-02-03',8,1);";
-            }
+            if (unObjet instanceof Produit){
+                Produit produit = (Produit) unObjet;
+                produit.getType();
+                //String sql = "INSERT INTO `var`(`dateCommande`, `numLots`, `idClient`) VALUES ('');";
+            }  
+            
             //String sql = "INSERT INTO `commande`(`dateCommande`, `numLots`, `idClient`) VALUES ('2017-02-03',8,1);";
             //s.executeUpdate(sql); 
             System.out.println("connexion OK");

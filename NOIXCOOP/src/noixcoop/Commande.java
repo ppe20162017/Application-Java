@@ -42,6 +42,7 @@ public class Commande {
 
     /**
      * @return the id
+     * table commande colonne numero de commande
      */
     public int getId() {
         return id;
@@ -49,6 +50,7 @@ public class Commande {
 
     /**
      * @return the conditionnement
+     * table conditionnement colonne libelle
      */
     public String getConditionnement() {
         return conditionnement;
@@ -56,6 +58,7 @@ public class Commande {
 
     /**
      * @return the quantite
+     * table livraison colonne quantite livraison
      */
     public int getQuantite() {
         return quantite;
@@ -63,6 +66,7 @@ public class Commande {
 
     /**
      * @return the dateConditionnement
+     * Table conditionnement colonne dateCond
      */
     public Date getDateConditionnement() {
         return dateConditionnement;
@@ -70,6 +74,7 @@ public class Commande {
 
     /**
      * @return the dateEnvoi
+     * Table livraison colonne dateLiv
      */
     public Date getDateEnvoi() {
         return dateEnvoi;

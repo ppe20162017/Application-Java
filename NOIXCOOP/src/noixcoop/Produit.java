@@ -12,21 +12,28 @@ package noixcoop;
 public class Produit {
     private String variete, type;
     private int calibre;
+    
+    public Produit(){
+        
+    }
 
     public Produit(String variete, String type, int calibre) {
         this.variete = variete;
         this.type = type;
         this.calibre = calibre;
     }
-
+    
+    // Table Variete colonne libelle
     public String getVariete() {
         return variete;
     }
-
+    
+    // Table Conditionnement colonne libelleCommande
     public String getType() {
         return type;
     }
 
+    //Table lot colonne calibreLot
     public int getCalibre() {
         return calibre;
     }
