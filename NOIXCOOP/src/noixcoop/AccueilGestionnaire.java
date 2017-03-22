@@ -9,13 +9,12 @@ package noixcoop;
  *
  * @author tangu
  */
-public class AccueilGestionnaire extends javax.swing.JDialog {
+public class AccueilGestionnaire extends javax.swing.JFrame {
 
     /**
      * Creates new form AccueilGestionnaire
      */
-    public AccueilGestionnaire(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public AccueilGestionnaire(){
         initComponents();
     }
 
@@ -46,9 +45,19 @@ public class AccueilGestionnaire extends javax.swing.JDialog {
         jMenu1.setText("Commandes");
 
         editercommande.setText("Editer une commande");
+        editercommande.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editercommandeActionPerformed(evt);
+            }
+        });
         jMenu1.add(editercommande);
 
         consultercommande.setText("Consulter les commandes d'un distributeur");
+        consultercommande.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultercommandeActionPerformed(evt);
+            }
+        });
         jMenu1.add(consultercommande);
 
         jMenuBar1.add(jMenu1);
@@ -56,6 +65,11 @@ public class AccueilGestionnaire extends javax.swing.JDialog {
         jMenu2.setText("Deconnexion");
 
         deco.setText("Deconnexion");
+        deco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decoActionPerformed(evt);
+            }
+        });
         jMenu2.add(deco);
 
         jMenuBar1.add(jMenu2);
@@ -89,6 +103,27 @@ public class AccueilGestionnaire extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void editercommandeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editercommandeActionPerformed
+        EditerCommande creer = new EditerCommande();
+        creer.setTitle("Editer une commande");
+        creer.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_editercommandeActionPerformed
+
+    private void consultercommandeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultercommandeActionPerformed
+      ConsulterCommande consulter = new ConsulterCommande();
+        consulter.setTitle("Consulter une commande");
+        consulter.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_consultercommandeActionPerformed
+
+    private void decoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decoActionPerformed
+       connexion connexion = new connexion();
+        connexion.setTitle("Connexion");
+        connexion.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_decoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -119,14 +154,7 @@ public class AccueilGestionnaire extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AccueilGestionnaire dialog = new AccueilGestionnaire(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+             
             }
         });
     }

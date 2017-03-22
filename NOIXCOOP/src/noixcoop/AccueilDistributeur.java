@@ -9,13 +9,12 @@ package noixcoop;
  *
  * @author tangu
  */
-public class AccueilDistributeur extends javax.swing.JDialog {
+public class AccueilDistributeur extends javax.swing.JFrame {
 
     /**
      * Creates new form AccueilDistributeur
      */
-    public AccueilDistributeur(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public AccueilDistributeur(){
         initComponents();
     }
 
@@ -28,34 +27,43 @@ public class AccueilDistributeur extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        CreerCommande = new javax.swing.JMenuItem();
-        ConsulterCommande = new javax.swing.JMenuItem();
+        creercommande = new javax.swing.JMenuItem();
+        consulter = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         deco = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Bonjour, et bienvenue ");
-
-        jLabel2.setText("sur l'application de gestion de commande de Noixcoop");
-
         jMenu1.setText("Commandes");
 
-        CreerCommande.setText("Creer une commande");
-        jMenu1.add(CreerCommande);
+        creercommande.setText("Creer une commande");
+        creercommande.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creercommandeActionPerformed(evt);
+            }
+        });
+        jMenu1.add(creercommande);
 
-        ConsulterCommande.setText("Consulter une commande");
-        jMenu1.add(ConsulterCommande);
+        consulter.setText("Consulter commandes");
+        consulter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consulterActionPerformed(evt);
+            }
+        });
+        jMenu1.add(consulter);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Deconnexion");
 
         deco.setText("Deconnexion");
+        deco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decoActionPerformed(evt);
+            }
+        });
         jMenu2.add(deco);
 
         jMenuBar1.add(jMenu2);
@@ -66,28 +74,36 @@ public class AccueilDistributeur extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel2)))
-                .addContainerGap(60, Short.MAX_VALUE))
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addContainerGap(132, Short.MAX_VALUE))
+            .addGap(0, 274, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void creercommandeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creercommandeActionPerformed
+        CreerUneCommande creer = new CreerUneCommande();
+        creer.setTitle("Creer une commande");
+        creer.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_creercommandeActionPerformed
+
+    private void consulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulterActionPerformed
+       ConsulterCommandeDistributeur consulter = new ConsulterCommandeDistributeur();
+        consulter.setTitle("Consulter commande");
+        consulter.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_consulterActionPerformed
+
+    private void decoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decoActionPerformed
+     connexion connexion = new connexion();
+        connexion.setTitle("Connexion");
+        connexion.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_decoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,24 +135,15 @@ public class AccueilDistributeur extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AccueilDistributeur dialog = new AccueilDistributeur(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+               
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem ConsulterCommande;
-    private javax.swing.JMenuItem CreerCommande;
+    private javax.swing.JMenuItem consulter;
+    private javax.swing.JMenuItem creercommande;
     private javax.swing.JMenuItem deco;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

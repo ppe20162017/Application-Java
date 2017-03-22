@@ -9,15 +9,17 @@ package noixcoop;
  *
  * @author tangu
  */
-public class connexion extends javax.swing.JDialog {
+public class connexion extends javax.swing.JFrame {
 
     /**
      * Creates new form connexion
      */
-    public connexion(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public connexion() {
+       
         initComponents();
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,7 +107,10 @@ public class connexion extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+       AccueilGestionnaire AccueilGestionnaire = new AccueilGestionnaire();
+        AccueilGestionnaire.setTitle("Accueil");
+        AccueilGestionnaire.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -142,14 +147,9 @@ public class connexion extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                connexion dialog = new connexion(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                  connexion fen = new connexion();
+                fen.setTitle("Connexion");
+                fen.setVisible(true);
             }
         });
     }

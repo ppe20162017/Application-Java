@@ -9,15 +9,18 @@ package noixcoop;
  *
  * @author tangu
  */
-public class ConsulterCommandeDistributeur extends javax.swing.JDialog {
+public class ConsulterCommandeDistributeur extends javax.swing.JFrame {
 
     /**
      * Creates new form ConsulterCommandeDistributeur
      */
-    public ConsulterCommandeDistributeur(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public ConsulterCommandeDistributeur() {        
         initComponents();
     }
+ //To change body of generated methods, choose Tools | Templates.
+
+ 
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,6 +50,11 @@ public class ConsulterCommandeDistributeur extends javax.swing.JDialog {
         jMenu1.setText("Deconnexion");
 
         deco.setText("Deconnexion");
+        deco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decoActionPerformed(evt);
+            }
+        });
         jMenu1.add(deco);
 
         jMenuBar1.add(jMenu1);
@@ -54,6 +62,11 @@ public class ConsulterCommandeDistributeur extends javax.swing.JDialog {
         jMenu2.setText("Retour à l'accueil");
 
         retour.setText("Retour à l'accueil");
+        retour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retourActionPerformed(evt);
+            }
+        });
         jMenu2.add(retour);
 
         jMenuBar1.add(jMenu2);
@@ -81,8 +94,22 @@ public class ConsulterCommandeDistributeur extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void consulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulterActionPerformed
-        // TODO add your handling code here:
+   
     }//GEN-LAST:event_consulterActionPerformed
+
+    private void retourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retourActionPerformed
+           AccueilDistributeur AccueilDistributeur = new AccueilDistributeur();
+        AccueilDistributeur.setTitle("Accueil");
+        AccueilDistributeur.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_retourActionPerformed
+
+    private void decoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decoActionPerformed
+       connexion connexion = new connexion();
+        connexion.setTitle("Connexion");
+        connexion.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_decoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,15 +141,7 @@ public class ConsulterCommandeDistributeur extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ConsulterCommandeDistributeur dialog = new ConsulterCommandeDistributeur(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
+}
         });
     }
 

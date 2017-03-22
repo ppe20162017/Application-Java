@@ -9,13 +9,12 @@ package noixcoop;
  *
  * @author tangu
  */
-public class ModifierCommande extends javax.swing.JDialog {
+public class ModifierCommande extends javax.swing.JFrame {
 
     /**
      * Creates new form ModifierCommande
      */
-    public ModifierCommande(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public ModifierCommande(){
         initComponents();
     }
 
@@ -66,6 +65,11 @@ public class ModifierCommande extends javax.swing.JDialog {
         jMenu1.setText("Deconnexion");
 
         deco.setText("Deconnexion");
+        deco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decoActionPerformed(evt);
+            }
+        });
         jMenu1.add(deco);
 
         jMenuBar1.add(jMenu1);
@@ -73,6 +77,11 @@ public class ModifierCommande extends javax.swing.JDialog {
         jMenu2.setText("Retour à l'accueil");
 
         retour.setText("Retour a l'accueil");
+        retour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retourActionPerformed(evt);
+            }
+        });
         jMenu2.add(retour);
 
         jMenuBar1.add(jMenu2);
@@ -161,6 +170,20 @@ public class ModifierCommande extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void retourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retourActionPerformed
+         AccueilGestionnaire AccueilGestionnaire = new AccueilGestionnaire();
+        AccueilGestionnaire.setTitle("Accueil");
+        AccueilGestionnaire.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_retourActionPerformed
+
+    private void decoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decoActionPerformed
+      connexion connexion = new connexion();
+        connexion.setTitle("Connexion");
+        connexion.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_decoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -191,14 +214,7 @@ public class ModifierCommande extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ModifierCommande dialog = new ModifierCommande(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+             
             }
         });
     }
