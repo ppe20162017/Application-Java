@@ -12,21 +12,54 @@ import java.sql.*;
  */
 public class PersistanceSQL {
     
-    private String ipBase, nomBaseDonnees;
+    String ipBase, nomBaseDonnees;
     private int port;
+    String login = "root"
+            , mdp = "";
     
-
+    public PersistanceSQL(){
+        
+    }
+    
     public PersistanceSQL(String ipBase, String nomBaseDonnees, int port) {
         this.ipBase = ipBase;
         this.nomBaseDonnees = nomBaseDonnees;
         this.port = port;
     }
     
-    public void rangerDansBase(Object unObjet){
-        
+    public void rangerDansBase(){
+        Connection c=null;
+        Statement s=null;
+        try{
+            Class.forName("org.gjt.mm.mysql.Driver");
+            //Class.forName("com.mysql.jdbc.Driver");
+            
+            c=DriverManager.getConnection("jdbc:mysql://localhost/agrurppe","root","");
+            s = c.createStatement();
+            String sql = "INSERT INTO `commande`(`dateCommande`, `numLots`, `idClient`) VALUES ('2017-02-03',8,1);";
+            s.executeUpdate(sql); 
+            System.out.println("connexion OK");
+        }
+        catch(SQLException e){
+            System.out.println("erreur premier catch");
+            e.printStackTrace();
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("erreur deuxieme catch");
+            e.printStackTrace();
+        }finally{
+            try{
+                c.close();
+                s.close();
+            }
+            catch(SQLException e){
+                System.out.println("erreur troisieme catch");
+                e.printStackTrace();
+            }
+        }
     }
     
-    public Object changerDepuisBase (String id, String nomClasse){
+    /*public Object changerDepuisBase (String id, String nomClasse){
         
-    }
+    }*/
 }
