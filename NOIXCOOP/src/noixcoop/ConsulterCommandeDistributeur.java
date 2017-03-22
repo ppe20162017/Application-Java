@@ -9,12 +9,12 @@ package noixcoop;
  *
  * @author tangu
  */
-public class AccueilGestionnaire extends javax.swing.JDialog {
+public class ConsulterCommandeDistributeur extends javax.swing.JDialog {
 
     /**
-     * Creates new form AccueilGestionnaire
+     * Creates new form ConsulterCommandeDistributeur
      */
-    public AccueilGestionnaire(java.awt.Frame parent, boolean modal) {
+    public ConsulterCommandeDistributeur(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -28,35 +28,33 @@ public class AccueilGestionnaire extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        consulter = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        editercommande = new javax.swing.JMenuItem();
-        consultercommande = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
         deco = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        retour = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Bonjour et bienvenue ");
+        consulter.setText("Consulter");
+        consulter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consulterActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("dans l'application de gestion de commande de Noixcoop");
+        jMenu1.setText("Deconnexion");
 
-        jMenu1.setText("Commandes");
-
-        editercommande.setText("Editer une commande");
-        jMenu1.add(editercommande);
-
-        consultercommande.setText("Consulter les commandes d'un distributeur");
-        jMenu1.add(consultercommande);
+        deco.setText("Deconnexion");
+        jMenu1.add(deco);
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Deconnexion");
+        jMenu2.setText("Retour à l'accueil");
 
-        deco.setText("Deconnexion");
-        jMenu2.add(deco);
+        retour.setText("Retour à l'accueil");
+        jMenu2.add(retour);
 
         jMenuBar1.add(jMenu2);
 
@@ -67,27 +65,24 @@ public class AccueilGestionnaire extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(jLabel1)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(158, 158, 158)
+                .addComponent(consulter)
+                .addContainerGap(155, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(jLabel1)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel2)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addGap(115, 115, 115)
+                .addComponent(consulter)
+                .addContainerGap(134, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void consulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_consulterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -106,20 +101,20 @@ public class AccueilGestionnaire extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AccueilGestionnaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsulterCommandeDistributeur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AccueilGestionnaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsulterCommandeDistributeur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AccueilGestionnaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsulterCommandeDistributeur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AccueilGestionnaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsulterCommandeDistributeur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AccueilGestionnaire dialog = new AccueilGestionnaire(new javax.swing.JFrame(), true);
+                ConsulterCommandeDistributeur dialog = new ConsulterCommandeDistributeur(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -132,13 +127,11 @@ public class AccueilGestionnaire extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem consultercommande;
+    private javax.swing.JButton consulter;
     private javax.swing.JMenuItem deco;
-    private javax.swing.JMenuItem editercommande;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem retour;
     // End of variables declaration//GEN-END:variables
 }
