@@ -30,11 +30,6 @@ public class PersistanceSQL {
     public void rangerDansBase(Object unObjet){
         Connection c=null;
         Statement s=null;
-        
-        
-        
-        
-        
         try{
             Class.forName("org.gjt.mm.mysql.Driver");
             
@@ -42,9 +37,24 @@ public class PersistanceSQL {
             s = c.createStatement();
             if (unObjet instanceof Produit){
                 Produit produit = (Produit) unObjet;
-                produit.getType();
-                //String sql = "INSERT INTO `var`(`dateCommande`, `numLots`, `idClient`) VALUES ('');";
+                String sql = "INSERT INTO `variete`(`libelleVar`) VALUES ('"+produit.getVariete()+"');";
+                s.executeUpdate(sql); 
+                sql = "INSERT INTO `conditionnement`(`libelleCond`,`numeroCommande`) VALUES ('"+produit.getType()+"',1)";
+                s.executeUpdate(sql);
+                sql = "INSERT INTO `lots`(`calibreLot`) VALUES ('"+produit.getCalibre()+"');";
+                s.executeUpdate(sql);
+                System.out.println("Objet produit");
             }  
+            else if (unObjet instanceof Commande){
+                Commande commande = (Commande) unObjet;
+                System.out.println("objet commande");
+            }
+            else if (unObjet instanceof Distributeur){
+                Distributeur distributeur  = (Distributeur) unObjet;
+                System.out.println("Objet distributeur");           }
+            else{
+                System.out.println("Erreur");
+            }
             
             //String sql = "INSERT INTO `commande`(`dateCommande`, `numLots`, `idClient`) VALUES ('2017-02-03',8,1);";
             //s.executeUpdate(sql); 
