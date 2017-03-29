@@ -34,13 +34,12 @@ public class Distributeur {
         return lesCommandes;
     }
     
-    public ArrayList<Commande> getCommandesEnCours(){
-        ArrayList<Commande> commandesEnCours=new ArrayList();
+    
+    public ArrayList<Commande> getCommandes(){
+        ArrayList<Commande> commandes=new ArrayList();
         for (Commande uneCommande : lesCommandes){
-            if (uneCommande.enCours()){
-                commandesEnCours.add(uneCommande);
-            }
+            commandes.add(uneCommande); 
         }
-        return commandesEnCours;
+        return commandes;
     }
 }

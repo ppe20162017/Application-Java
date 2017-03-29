@@ -6,11 +6,15 @@
 package noixcoop;
 
 import java.sql.*;
+import java.util.ArrayList;
 /**
  *
  * @author benoi
  */
 public class PersistanceSQL {
+    private Produit pro;
+    private ArrayList<Produit> listeProduit;
+    private ArrayList<Commande> listeCommande;
     
     String ipBase, nomBaseDonnees;
     private int port;
@@ -56,8 +60,6 @@ public class PersistanceSQL {
                 System.out.println("Erreur");
             }
             
-            //String sql = "INSERT INTO `commande`(`dateCommande`, `numLots`, `idClient`) VALUES ('2017-02-03',8,1);";
-            //s.executeUpdate(sql); 
             System.out.println("connexion OK");
         }
         catch(SQLException e){
@@ -79,7 +81,56 @@ public class PersistanceSQL {
         }
     }
     
-    /*public Object changerDepuisBase (String id, String nomClasse){
+   public void changerDepuisBase (String nomClasse){
+        Connection c=null;
+        Statement s=null;
+        String mdp="";
         
-    }*/
+        try{
+            Class.forName("org.gjt.mm.mysql.Driver");
+            
+            c=DriverManager.getConnection("jdbc:mysql://localhost/agrurppe","root",mdp);
+            s = c.createStatement();
+            if ( nomClasse == "Commande"){
+                
+                String sql="SELECT * FROM commandejava";
+                ResultSet res = s.executeQuery(sql); 
+                
+                while (res.next()){
+                    String sql2 = "SELECT * FROM produitjava WHERE produitjava.idProduitJava = "+res.getInt("idProduitJava")+";";
+                    ResultSet res2 = s.executeQuery(sql2);
+                    while(res2.next()){
+                        pro = new Produit (res2.getInt("idProduitJava"), res2.getString("varieteJava"), res2.getString("typeJava"), res2.getInt("calibreJava") );
+                        listeProduit.add(pro);
+                        System.out.println(pro.getIdProduit());
+                        
+                    }
+                   res2.close();
+                   
+                    Commande com = new Commande(res.getInt("idCommandeJava"), res.getString("conditionnementJava"), res.getInt("quantiteJava"), res.getDate("dateConditionnement"), res.getDate("dateEnvoi"),pro);
+                    listeCommande.add(com);
+                }
+                res.close();
+            }
+            
+            System.out.println("connexion OK");
+        }
+        catch(SQLException e){
+            System.out.println("erreur premier catch");
+            e.printStackTrace();
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("erreur deuxieme catch");
+            e.printStackTrace();
+        }finally{
+            try{
+                c.close();
+                s.close();
+            }
+            catch(SQLException e){
+                System.out.println("erreur troisieme catch");
+                e.printStackTrace();
+            }
+        }
+    }
 }

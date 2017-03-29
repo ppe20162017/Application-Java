@@ -35,7 +35,7 @@ public class GestionCommandes {
         unFichier.ouvrir("E");
         unFichier.ecrire("<?xml version=\"1.0\"encoding=\"UTF-8\"?>");
         unFichier.ecrire("<commandes idDistributeur=\""+unDistributeur.getId()+"\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">");
-        for (Commande uneCommande : unDistributeur.getCommandesEnCours()){
+        for (Commande uneCommande : unDistributeur.getCommandes()){
             uneCommande.XmlCommande();
         }
         unFichier.ecrire("</commandes> ");

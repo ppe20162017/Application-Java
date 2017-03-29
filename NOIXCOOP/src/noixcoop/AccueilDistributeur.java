@@ -29,7 +29,6 @@ public class AccueilDistributeur extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        creercommande = new javax.swing.JMenuItem();
         consulter = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         deco = new javax.swing.JMenuItem();
@@ -37,14 +36,6 @@ public class AccueilDistributeur extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jMenu1.setText("Commandes");
-
-        creercommande.setText("Creer une commande");
-        creercommande.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                creercommandeActionPerformed(evt);
-            }
-        });
-        jMenu1.add(creercommande);
 
         consulter.setText("Consulter commandes");
         consulter.addActionListener(new java.awt.event.ActionListener() {
@@ -83,13 +74,6 @@ public class AccueilDistributeur extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void creercommandeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creercommandeActionPerformed
-        CreerUneCommande creer = new CreerUneCommande();
-        creer.setTitle("Creer une commande");
-        creer.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_creercommandeActionPerformed
 
     private void consulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulterActionPerformed
        ConsulterCommandeDistributeur consulter = new ConsulterCommandeDistributeur();
@@ -142,7 +126,6 @@ public class AccueilDistributeur extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem consulter;
-    private javax.swing.JMenuItem creercommande;
     private javax.swing.JMenuItem deco;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

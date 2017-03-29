@@ -5,6 +5,13 @@
  */
 package noixcoop;
 
+import java.io.IOException;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.swing.JComboBox;
+import java.sql.*;
+import javax.swing.JTextArea;
+
 /**
  *
  * @author tangu
@@ -14,8 +21,9 @@ public class ConsulterCommande extends javax.swing.JFrame {
     /**
      * Creates new form ConsulterCommande
      */
-    public ConsulterCommande(){
+    public ConsulterCommande() throws IOException{
         initComponents();
+        chargerListDistributeur();
     }
 
     /**
@@ -29,8 +37,10 @@ public class ConsulterCommande extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        NomDistributeur = new javax.swing.JTextField();
         consulter = new javax.swing.JButton();
+        comboboxDistributeur = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textAreaCommandeDist = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         deco = new javax.swing.JMenuItem();
@@ -41,15 +51,20 @@ public class ConsulterCommande extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Saissez le nom du distributeur dont vous souhaitez vous les commandes");
+        jLabel1.setText("Choisissez l'id du distributeur dont vous souhaitez vous les commandes");
 
-        NomDistributeur.addActionListener(new java.awt.event.ActionListener() {
+        consulter.setText("Consulter");
+        consulter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NomDistributeurActionPerformed(evt);
+                consulterActionPerformed(evt);
             }
         });
 
-        consulter.setText("Consulter");
+        comboboxDistributeur.setName("comboboxDistributeur"); // NOI18N
+
+        textAreaCommandeDist.setColumns(20);
+        textAreaCommandeDist.setRows(5);
+        jScrollPane1.setViewportView(textAreaCommandeDist);
 
         jMenu1.setText("Deconnexion");
 
@@ -84,17 +99,20 @@ public class ConsulterCommande extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 7, Short.MAX_VALUE)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(123, 123, 123)
-                                .addComponent(NomDistributeur, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(169, 169, 169)
+                                .addComponent(comboboxDistributeur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(152, 152, 152)
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(159, 159, 159)
                                 .addComponent(consulter)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -102,19 +120,19 @@ public class ConsulterCommande extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(29, 29, 29)
-                .addComponent(NomDistributeur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comboboxDistributeur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(consulter)
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
+
+        comboboxDistributeur.getAccessibleContext().setAccessibleName("comboboxDistributeur");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void NomDistributeurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomDistributeurActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NomDistributeurActionPerformed
 
     private void retourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retourActionPerformed
          AccueilGestionnaire AccueilGestionnaire = new AccueilGestionnaire();
@@ -129,6 +147,60 @@ public class ConsulterCommande extends javax.swing.JFrame {
         connexion.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_decoActionPerformed
+    
+    
+    private void consulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulterActionPerformed
+        // TODO add your handling code here:
+         String login = "root"
+            , mdp = "",
+                ip = "jdbc:mysql://localhost/agrurppe";
+        Connection c=null;
+        Statement s=null;
+        try{
+            Class.forName("org.gjt.mm.mysql.Driver");
+            c=DriverManager.getConnection("jdbc:mysql://localhost/agrurppe","root",mdp);
+            s = c.createStatement();
+             String text="<?xml version=\"1.0\"encoding=\"UTF-8\"?>\n "+
+                    "<commandes idDistributeur="+comboboxDistributeur.getSelectedItem().toString()+" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n";
+            
+            String sql2 = "SELECT * FROM `commandejava`, user WHERE commandejava.idUser = "+comboboxDistributeur.getSelectedItem().toString()+" AND user.idUser = "+comboboxDistributeur.getSelectedItem().toString()+" AND user.profil=\"distributeur\" ;";
+            ResultSet res2 = s.executeQuery(sql2);
+            while (res2.next()){
+                text=text+"<commande id="+res2.getInt("idCommandeJava")+">\n"
+                        + "<conditionnement type="+res2.getString("conditionnementJava")+" />\n"
+                        + " <quantite>"+res2.getInt("quantiteJava")+"</quantite>\n"
+                        + "<date_conditionnement>"+res2.getDate("dateConditionnement")+"</date_conditionnement>\n"
+                        + "<date_envoi>"+res2.getDate("dateEnvoi")+"</date_envoi>\n"
+                        + "</commande>";
+            }
+            textAreaCommandeDist.setText(text);
+          /*  unFichier.ecrire("<commande id=\""+this.getId()+"\"> ");
+        unFichier.ecrire("<produit variete=\""+this.getLeProduit().getVariete()+"\" type=\""+this.getLeProduit().getType()+"\" calibre=\""+this.getLeProduit().getCalibre()+"\" /> ");
+        unFichier.ecrire("<conditionnement type=\""+this.getConditionnement()+"\" /> ");
+        unFichier.ecrire("<quantite>"+this.getQuantite()+"</quantite>");
+        unFichier.ecrire("<date_conditionnement>"+this.getDateConditionnement()+"</date_conditionnement>");
+        unFichier.ecrire("<date_envoi>"+this.getDateEnvoi()+"</date_envoi>");
+        unFichier.ecrire("</commande>");*/
+        }
+        catch(SQLException e){
+            System.out.println("erreur premier catch");
+            e.printStackTrace();
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("erreur deuxieme catch");
+            e.printStackTrace();
+        }finally{
+            try{
+                c.close();
+                s.close();
+            }
+            catch(SQLException e){
+                System.out.println("erreur troisieme catch");
+                e.printStackTrace();
+            }
+        }
+       
+    }//GEN-LAST:event_consulterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,9 +236,49 @@ public class ConsulterCommande extends javax.swing.JFrame {
             }
         });
     }
+    
+    //Charger la liste box avec les id des distributeurs
+    public void chargerListDistributeur () throws IOException{
+        
+        JComboBox liste;
+        String login = "root"
+            , mdp = "",
+                ip = "jdbc:mysql://localhost/agrurppe";
+        Connection c=null;
+        Statement s=null;
+        try{
+            Class.forName("org.gjt.mm.mysql.Driver");
+            c=DriverManager.getConnection("jdbc:mysql://localhost/agrurppe","root",mdp);
+            s = c.createStatement();
+            String sql= "SELECT * FROM user WHERE profil=\"distributeur\""; 
+            ResultSet res = s.executeQuery(sql); 
+            while (res.next()){
+                comboboxDistributeur.addItem(res.getString("idUser"));
+            }
+            
+                    
+        }
+        catch(SQLException e){
+            System.out.println("erreur premier catch");
+            e.printStackTrace();
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("erreur deuxieme catch");
+            e.printStackTrace();
+        }finally{
+            try{
+                c.close();
+                s.close();
+            }
+            catch(SQLException e){
+                System.out.println("erreur troisieme catch");
+                e.printStackTrace();
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField NomDistributeur;
+    private javax.swing.JComboBox<String> comboboxDistributeur;
     private javax.swing.JButton consulter;
     private javax.swing.JMenuItem deco;
     private javax.swing.JButton jButton1;
@@ -174,6 +286,8 @@ public class ConsulterCommande extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem retour;
+    private javax.swing.JTextArea textAreaCommandeDist;
     // End of variables declaration//GEN-END:variables
 }
