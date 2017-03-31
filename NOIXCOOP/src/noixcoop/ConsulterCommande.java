@@ -155,43 +155,36 @@ public class ConsulterCommande extends javax.swing.JFrame {
             , mdp = "",
                 ip = "jdbc:mysql://localhost/agrurppe";
         Connection c=null;
-        Statement s=null;
-        Statement s2=null;
+        Statement sCommande=null;
+        Statement sProduit=null;
         try{
             Class.forName("org.gjt.mm.mysql.Driver");
             c=DriverManager.getConnection("jdbc:mysql://localhost/agrurppe","root",mdp);
-            s = c.createStatement();
-            s2 = c.createStatement();
+            sCommande = c.createStatement();
+            sProduit = c.createStatement();
              String text="<?xml version=\"1.0\"encoding=\"UTF-8\"?>\n "+
                     "<commandes idDistributeur="+comboboxDistributeur.getSelectedItem().toString()+" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n";
             
-            String sql2 = "SELECT * FROM `commandejava`, user WHERE commandejava.idUser = "+comboboxDistributeur.getSelectedItem().toString()+" AND user.idUser = "+comboboxDistributeur.getSelectedItem().toString()+" AND user.profil=\"distributeur\" ;";
-            ResultSet res2 = s.executeQuery(sql2);
-            while (res2.next()){
-                text=text+"<commande id="+res2.getInt("idCommandeJava")+">\n";
+            String sqlCommande = "SELECT * FROM `commandejava`, user WHERE commandejava.idUser = "+comboboxDistributeur.getSelectedItem().toString()+" AND user.idUser = "+comboboxDistributeur.getSelectedItem().toString()+" AND user.profil=\"distributeur\" ;";
+            ResultSet resCommande = sCommande.executeQuery(sqlCommande);
+            while (resCommande.next()){
+                text=text+"<commande id="+resCommande.getInt("idCommandeJava")+">\n";
                 
-                String sql3 = "SELECT * FROM `produitjava`, `commandejava`, user WHERE commandejava.idCommandeJava = "+res2.getInt("idCommandeJava")+" "
+                String sqlProduit = "SELECT * FROM `produitjava`, `commandejava`, user WHERE commandejava.idCommandeJava = "+resCommande.getInt("idCommandeJava")+" "
                         + "AND user.idUser="+comboboxDistributeur.getSelectedItem().toString()+" AND commandejava.idProduitJava = produitjava.idProduitJava";
-                ResultSet res3 = s2.executeQuery(sql3);
-                while (res3.next()){
-                    text = text+"<produit variete="+res3.getString("varieteJava")+" type="+res3.getString("typeJava")+" calibre="+res3.getString("calibreJava")+" /> ";
+                ResultSet resProduit = sProduit.executeQuery(sqlProduit);
+                while (resProduit.next()){
+                    text = text+"<produit variete="+resProduit.getString("varieteJava")+" type="+resProduit.getString("typeJava")+" calibre="+resProduit.getString("calibreJava")+" /> ";
                 }
                 
-                text=text+ "<conditionnement type="+res2.getString("conditionnementJava")+" />\n"
-                        + " <quantite>"+res2.getInt("quantiteJava")+"</quantite>\n"
-                        + "<date_conditionnement>"+res2.getDate("dateConditionnement")+"</date_conditionnement>\n"
-                        + "<date_envoi>"+res2.getDate("dateEnvoi")+"</date_envoi>\n"
-                        + "</commande>";
+                text=text+ "<conditionnement type="+resCommande.getString("conditionnementJava")+" />\n"
+                        + " <quantite>"+resCommande.getInt("quantiteJava")+"</quantite>\n"
+                        + "<date_conditionnement>"+resCommande.getDate("dateConditionnement")+"</date_conditionnement>\n"
+                        + "<date_envoi>"+resCommande.getDate("dateEnvoi")+"</date_envoi>\n"
+                        + "</commande>\n";
                         
             }
             textAreaCommandeDist.setText(text);
-          /*  unFichier.ecrire("<commande id=\""+this.getId()+"\"> ");
-        unFichier.ecrire("<produit variete=\""+this.getLeProduit().getVariete()+"\" type=\""+this.getLeProduit().getType()+"\" calibre=\""+this.getLeProduit().getCalibre()+"\" /> ");
-        unFichier.ecrire("<conditionnement type=\""+this.getConditionnement()+"\" /> ");
-        unFichier.ecrire("<quantite>"+this.getQuantite()+"</quantite>");
-        unFichier.ecrire("<date_conditionnement>"+this.getDateConditionnement()+"</date_conditionnement>");
-        unFichier.ecrire("<date_envoi>"+this.getDateEnvoi()+"</date_envoi>");
-        unFichier.ecrire("</commande>");*/
         }
         catch(SQLException e){
             System.out.println("erreur premier catch");
@@ -203,7 +196,7 @@ public class ConsulterCommande extends javax.swing.JFrame {
         }finally{
             try{
                 c.close();
-                s.close();
+                sCommande.close();
             }
             catch(SQLException e){
                 System.out.println("erreur troisieme catch");
