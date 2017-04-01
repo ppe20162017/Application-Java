@@ -23,6 +23,7 @@ public class EditerCommande extends javax.swing.JFrame {
      */
     public EditerCommande(){
         initComponents();
+        chargerIdCommande();
     }
 
     /**
@@ -38,18 +39,19 @@ public class EditerCommande extends javax.swing.JFrame {
         vailder = new javax.swing.JButton();
         jComboBoxEditCommande = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldConditionnement = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldQuantite = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        jTextFieldIdUser = new javax.swing.JTextField();
+        jTextFieldIdProduit = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jXDatePickerDateEnvoie = new org.jdesktop.swingx.JXDatePicker();
+        jXDatePickerDateConditionnemnt = new org.jdesktop.swingx.JXDatePicker();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         deco = new javax.swing.JMenuItem();
@@ -67,7 +69,6 @@ public class EditerCommande extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxEditCommande.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxEditCommande.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxEditCommandeActionPerformed(evt);
@@ -75,8 +76,6 @@ public class EditerCommande extends javax.swing.JFrame {
         });
 
         jLabel2.setText("Conditionnement : ");
-
-        jTextField1.setText("jTextField1");
 
         jButton1.setText("Update valeur");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -87,23 +86,19 @@ public class EditerCommande extends javax.swing.JFrame {
 
         jLabel3.setText("Quantité : ");
 
-        jTextField2.setText("jTextField2");
+        jTextFieldQuantite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldQuantiteActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Date Conditionnement : ");
 
-        jTextField3.setText("jTextField3");
-
-        jLabel5.setText("Date Envoi");
-
-        jTextField4.setText("jTextField4");
+        jLabel5.setText("Date Envoie");
 
         jLabel6.setText("idUser");
 
-        jTextField5.setText("jTextField5");
-
         jLabel7.setText("idProduit");
-
-        jTextField6.setText("jTextField6");
 
         jMenu1.setText("Deconnexion");
 
@@ -147,10 +142,12 @@ public class EditerCommande extends javax.swing.JFrame {
                             .addComponent(vailder)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(211, 211, 211)
-                        .addComponent(jButton1))
+                        .addComponent(jButton1)
+                        .addGap(76, 76, 76)
+                        .addComponent(jLabel8))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -159,19 +156,19 @@ public class EditerCommande extends javax.swing.JFrame {
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(39, 39, 39)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                                    .addComponent(jTextField4)
-                                    .addComponent(jTextField5)
-                                    .addComponent(jTextField6)))
+                                    .addComponent(jTextFieldIdUser)
+                                    .addComponent(jTextFieldIdProduit)
+                                    .addComponent(jXDatePickerDateEnvoie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jXDatePickerDateConditionnemnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))
                                 .addGap(39, 39, 39)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(247, Short.MAX_VALUE))
+                                    .addComponent(jTextFieldQuantite)
+                                    .addComponent(jTextFieldConditionnement))))))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,29 +182,31 @@ public class EditerCommande extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldConditionnement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
+                    .addComponent(jTextFieldQuantite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                    .addComponent(jXDatePickerDateConditionnemnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jXDatePickerDateEnvoie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldIdUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                    .addComponent(jTextFieldIdProduit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel8))
                 .addContainerGap())
         );
 
@@ -219,6 +218,48 @@ public class EditerCommande extends javax.swing.JFrame {
         ModifierCommande.setTitle("Modifier une Commande");
         ModifierCommande.setVisible(true);
         this.setVisible(false);*/
+        
+        String login = "root"
+            , mdp = "",
+                ip = "jdbc:mysql://localhost/agrurppe";
+        Connection c=null;
+        Statement s=null;
+        try{
+            Class.forName("org.gjt.mm.mysql.Driver");
+            c=DriverManager.getConnection("jdbc:mysql://localhost/agrurppe","root",mdp);
+            s = c.createStatement();
+            String sql= "SELECT * FROM commandejava WHERE commandejava.idCommandeJava = "+jComboBoxEditCommande.getSelectedItem().toString()+""; 
+            ResultSet res = s.executeQuery(sql);
+            String conditionement;
+            while (res.next()){
+                jTextFieldConditionnement.setText(res.getString("conditionnementJava"));
+                jTextFieldQuantite.setText(res.getString("quantiteJava"));
+                jXDatePickerDateConditionnemnt.setDate(res.getDate("dateConditionnement"));
+                jXDatePickerDateEnvoie.setDate(res.getDate("dateEnvoi"));
+                jTextFieldIdProduit.setText(res.getString("idProduitJava"));
+                jTextFieldIdUser.setText(res.getString("idUser"));
+                
+            }
+            
+                    
+        }
+        catch(SQLException e){
+            System.out.println("erreur premier catch");
+            e.printStackTrace();
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("erreur deuxieme catch");
+            e.printStackTrace();
+        }finally{
+            try{
+                c.close();
+                s.close();
+            }
+            catch(SQLException e){
+                System.out.println("erreur troisieme catch");
+                e.printStackTrace();
+            }
+        }
         
         
     }//GEN-LAST:event_vailderActionPerformed
@@ -239,6 +280,11 @@ public class EditerCommande extends javax.swing.JFrame {
 
     private void jComboBoxEditCommandeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEditCommandeActionPerformed
         // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_jComboBoxEditCommandeActionPerformed
+
+    private void chargerIdCommande (){
           JComboBox liste;
         String login = "root"
             , mdp = "",
@@ -249,7 +295,7 @@ public class EditerCommande extends javax.swing.JFrame {
             Class.forName("org.gjt.mm.mysql.Driver");
             c=DriverManager.getConnection("jdbc:mysql://localhost/agrurppe","root",mdp);
             s = c.createStatement();
-            String sql= "SELECT * FROM commande "; 
+            String sql= "SELECT * FROM commandejava "; 
             ResultSet res = s.executeQuery(sql); 
             while (res.next()){
                 jComboBoxEditCommande.addItem(res.getString("idCommandeJava"));
@@ -274,12 +320,77 @@ public class EditerCommande extends javax.swing.JFrame {
                 e.printStackTrace();
             }
         }
-        
-    }//GEN-LAST:event_jComboBoxEditCommandeActionPerformed
-
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String login = "root"
+            , mdp = "",
+                ip = "jdbc:mysql://localhost/agrurppe";
+        Connection c=null;
+        Statement s=null;
+        try{
+            Class.forName("org.gjt.mm.mysql.Driver");
+            c=DriverManager.getConnection("jdbc:mysql://localhost/agrurppe","root",mdp);
+            s = c.createStatement();
+            /*jTextFieldConditionnement.setText(res.getString("conditionnementJava"));
+                jTextFieldQuantite.setText(res.getString("quantiteJava"));
+                jTextField3.setText(res.getString("dateConditionnement"));
+                jTextFieldDateEnvoie.setText(res.getString("dateEnvoi"));
+                jTextFieldIdProduit.setText(res.getString("idProduitJava"));
+                jTextFieldIdUser.setText(res.getString("idUser"));*/
+            
+            if (jTextFieldConditionnement.getText()=="" || jTextFieldQuantite.getText()=="" || jXDatePickerDateConditionnemnt.getDate()==null || jXDatePickerDateEnvoie.getDate()==null 
+                    || jTextFieldIdProduit.getText()=="" || jTextFieldIdUser.getText()=="" || estUnEntier(jTextFieldIdProduit.getText())==true  || estUnEntier(jTextFieldIdUser.getText())==true ){
+                
+                String sql= "UPDATE `commandejava` SET `conditionnementJava`="+jTextFieldConditionnement.getText()+",`quantiteJava`="+jTextFieldQuantite.getText()+","
+                        + "`dateConditionnement`="+jXDatePickerDateConditionnemnt.getDate()+",`dateEnvoi`="+jXDatePickerDateEnvoie.getDate()+",`idUser`="+jTextFieldIdProduit.getText()+",`idProduitJava`="+jTextFieldIdUser.getText()+"; "; 
+                
+                s.executeUpdate(sql); 
+                jLabel8.setText("Update réussi");
+            }
+            else{
+                jLabel8.setText("Erreur lors des saisie");
+            }
+            
+            
+            
+                    
+        }
+        catch(SQLException e){
+            System.out.println("erreur premier catch");
+            e.printStackTrace();
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("erreur deuxieme catch");
+            e.printStackTrace();
+        }finally{
+            try{
+                c.close();
+                s.close();
+            }
+            catch(SQLException e){
+                System.out.println("erreur troisieme catch");
+                e.printStackTrace();
+            }
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    public boolean estUnEntier(String chaine) {
+		try {
+			Integer.parseInt(chaine);
+		} catch (NumberFormatException e){
+			return false;
+		}
+ 
+		return true;
+	}
+    
+    
+    private void jTextFieldQuantiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldQuantiteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldQuantiteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,15 +438,16 @@ public class EditerCommande extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextFieldConditionnement;
+    private javax.swing.JTextField jTextFieldIdProduit;
+    private javax.swing.JTextField jTextFieldIdUser;
+    private javax.swing.JTextField jTextFieldQuantite;
+    private org.jdesktop.swingx.JXDatePicker jXDatePickerDateConditionnemnt;
+    private org.jdesktop.swingx.JXDatePicker jXDatePickerDateEnvoie;
     private javax.swing.JMenuItem retour;
     private javax.swing.JButton vailder;
     // End of variables declaration//GEN-END:variables
