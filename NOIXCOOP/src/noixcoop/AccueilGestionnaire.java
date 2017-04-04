@@ -5,6 +5,10 @@
  */
 package noixcoop;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author tangu
@@ -111,10 +115,16 @@ public class AccueilGestionnaire extends javax.swing.JFrame {
     }//GEN-LAST:event_editercommandeActionPerformed
 
     private void consultercommandeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultercommandeActionPerformed
-      ConsulterCommande consulter = new ConsulterCommande();
-        consulter.setTitle("Consulter une commande");
+      ConsulterCommande consulter;
+        try {
+            consulter = new ConsulterCommande();
+            consulter.setTitle("Consulter une commande");
         consulter.setVisible(true);
         this.setVisible(false);
+        } catch (IOException ex) {
+            Logger.getLogger(AccueilGestionnaire.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_consultercommandeActionPerformed
 
     private void decoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decoActionPerformed
