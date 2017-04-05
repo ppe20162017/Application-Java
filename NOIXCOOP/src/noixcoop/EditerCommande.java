@@ -100,6 +100,12 @@ public class EditerCommande extends javax.swing.JFrame {
 
         jLabel7.setText("idProduit");
 
+        jXDatePickerDateConditionnemnt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jXDatePickerDateConditionnemntActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Deconnexion");
 
         deco.setText("Deconnexion");
@@ -333,19 +339,13 @@ public class EditerCommande extends javax.swing.JFrame {
             Class.forName("org.gjt.mm.mysql.Driver");
             c=DriverManager.getConnection("jdbc:mysql://localhost/agrurppe","root",mdp);
             s = c.createStatement();
-            /*jTextFieldConditionnement.setText(res.getString("conditionnementJava"));
-                jTextFieldQuantite.setText(res.getString("quantiteJava"));
-                jTextField3.setText(res.getString("dateConditionnement"));
-                jTextFieldDateEnvoie.setText(res.getString("dateEnvoi"));
-                jTextFieldIdProduit.setText(res.getString("idProduitJava"));
-                jTextFieldIdUser.setText(res.getString("idUser"));*/
             
             if (jTextFieldConditionnement.getText()=="" || jTextFieldQuantite.getText()=="" || jXDatePickerDateConditionnemnt.getDate()==null || jXDatePickerDateEnvoie.getDate()==null 
                     || jTextFieldIdProduit.getText()=="" || jTextFieldIdUser.getText()=="" || estUnEntier(jTextFieldIdProduit.getText())==true  || estUnEntier(jTextFieldIdUser.getText())==true ){
                 
-                String dateEnvoie=jXDatePickerDateEnvoie.getDate()+"-"+(jXDatePickerDateEnvoie.getDate().getMonth()+1)+"-"+(jXDatePickerDateEnvoie.getDate().getDate());
-                System.out.println(jXDatePickerDateEnvoie.getDate().getYear());
-                String dateConditionnement=jXDatePickerDateConditionnemnt.getDate().getYear()+"-"+jXDatePickerDateConditionnemnt.getDate().getMonth()+"-"+jXDatePickerDateConditionnemnt.getDate().getDay();
+                String dateEnvoie=(jXDatePickerDateEnvoie.getDate().getYear()+1900)+"-"+(jXDatePickerDateEnvoie.getDate().getMonth()+1)+"-"+jXDatePickerDateEnvoie.getDate().getDate();
+                System.out.println(jXDatePickerDateEnvoie.getDate());
+                String dateConditionnement=(jXDatePickerDateConditionnemnt.getDate().getYear()+1900)+"-"+(jXDatePickerDateConditionnemnt.getDate().getMonth()+1)+"-"+jXDatePickerDateConditionnemnt.getDate().getDate();
                 String sql= "UPDATE `commandejava` SET `conditionnementJava`=\""+jTextFieldConditionnement.getText()+"\",`quantiteJava`=\""+jTextFieldQuantite.getText()+"\","
                         + "`dateConditionnement`=\""+dateConditionnement+"\",`dateEnvoi`=\""+dateEnvoie+"\" WHERE idCommandeJava="+jComboBoxEditCommande.getSelectedItem().toString()+"; "; 
                 
@@ -394,6 +394,10 @@ public class EditerCommande extends javax.swing.JFrame {
     private void jTextFieldQuantiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldQuantiteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldQuantiteActionPerformed
+
+    private void jXDatePickerDateConditionnemntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jXDatePickerDateConditionnemntActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jXDatePickerDateConditionnemntActionPerformed
 
     /**
      * @param args the command line arguments

@@ -15,11 +15,7 @@ public class NOIXCOOP {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        PersistanceSQL p = new PersistanceSQL("jdbc:mysql://localhost/agrurppe","agrurppe",80);
         
-        Commande co= new Commande ();
-       // p.rangerDansBase(pr);
     }
     
 }
