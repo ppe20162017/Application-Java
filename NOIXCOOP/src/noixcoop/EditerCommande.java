@@ -343,7 +343,7 @@ public class EditerCommande extends javax.swing.JFrame {
             if (jTextFieldConditionnement.getText()=="" || jTextFieldQuantite.getText()=="" || jXDatePickerDateConditionnemnt.getDate()==null || jXDatePickerDateEnvoie.getDate()==null 
                     || jTextFieldIdProduit.getText()=="" || jTextFieldIdUser.getText()=="" || estUnEntier(jTextFieldIdProduit.getText())==true  || estUnEntier(jTextFieldIdUser.getText())==true ){
                 
-                String dateEnvoie=jXDatePickerDateEnvoie.getDate().getYear()+"-"+(jXDatePickerDateEnvoie.getDate().getMonth()+1)+"-"+(jXDatePickerDateEnvoie.getDate().getDate()+1);
+                String dateEnvoie=jXDatePickerDateEnvoie.getDate()+"-"+(jXDatePickerDateEnvoie.getDate().getMonth()+1)+"-"+(jXDatePickerDateEnvoie.getDate().getDate());
                 System.out.println(jXDatePickerDateEnvoie.getDate().getYear());
                 String dateConditionnement=jXDatePickerDateConditionnemnt.getDate().getYear()+"-"+jXDatePickerDateConditionnemnt.getDate().getMonth()+"-"+jXDatePickerDateConditionnemnt.getDate().getDay();
                 String sql= "UPDATE `commandejava` SET `conditionnementJava`=\""+jTextFieldConditionnement.getText()+"\",`quantiteJava`=\""+jTextFieldQuantite.getText()+"\","
